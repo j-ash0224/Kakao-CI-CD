@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-express-app-deployment
+  labels:
+    app: my-express-app
+spec:
+  replicas: 2  # 생성할 파드의 개수
+  selector:
+    matchLabels:
+      app: my-express-app
+  template:
+    metadata:
+      labels:
+        app: my-express-app
+    spec:
+      containers:
+      - name: my-express-app-container
+        image: 4-team.kr-central-2.kcr.dev/xeat-registry/my-express-app:latest  # Docker 이미지 경로
+        ports:
+        - containerPort: 3000  # Node.js 애플리케이션이 사용하는 포트
